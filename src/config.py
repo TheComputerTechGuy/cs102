@@ -71,8 +71,8 @@ class PlayerConfig:
     SCALE: float = 0.16
     GRAVITY: int = 2
     SPEED: int = 7
-    JUMP_VERTICAL_SPEED: int = 26
-    JUMP_WITH_TRAMPOLINE_SPEED: int = 40
+    JUMP_VERTICAL_SPEED: int = 40
+    JUMP_WITH_TRAMPOLINE_SPEED: int = 50
     # minimal time until switching to the next sprite in sequence
     ANIMATION_INTERVAL_MS: int = 70 * 60 // GameConfig.FPS
     INITIAL_HP: int = 3
