@@ -18,10 +18,31 @@ class Defeated(BaseScene):
         # TODO: clean up, move hardcoded values to configs
         util.display_text(
             self.screen,
-            text="You died!",
+            text="Bạn đã chết!!! (You died!)",
             x=200,
             y=200,
             font_size=32,
+        )
+        util.display_text(
+            self.screen,
+            text="Sự thật thú vị (Fun Fact):",
+            x=200,
+            y=400,
+            font_size=32,
+        )
+        util.display_text(
+            self.screen,
+            text="Có 1 dòng chữ ẩn đấy, bạn tìm ra được không? =)))",
+            x=200,
+            y=500,
+            font_size=32,
+        )
+        util.display_text(
+            self.screen,
+            text="Never Gonna Give You Up",
+            x=200,
+            y=0,
+            font_size=5
         )
         now_ms = now()
         if now_ms - self.created_at_ms > 1800:

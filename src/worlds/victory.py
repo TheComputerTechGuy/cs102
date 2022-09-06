@@ -18,7 +18,14 @@ class Victory(BaseScene):
         # TODO: clean up, move hardcoded values to configs
         util.display_text(
             self.screen,
-            text="Victory!",
+            text="Bạn thắng rồi!!! (Victory!)",
+            x=200,
+            y=200,
+            font_size=32,
+        )
+        util.display_text(
+            self.screen,
+            text="Lúc nãy cực nhọc lắm phải không?",
             x=200,
             y=200,
             font_size=32,

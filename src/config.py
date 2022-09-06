@@ -71,8 +71,8 @@ class PlayerConfig:
     SCALE: float = 0.16
     GRAVITY: int = 2
     SPEED: int = 7
-    JUMP_VERTICAL_SPEED: int = 26
-    JUMP_WITH_TRAMPOLINE_SPEED: int = 40
+    JUMP_VERTICAL_SPEED: int = 40
+    JUMP_WITH_TRAMPOLINE_SPEED: int = 50
     # minimal time until switching to the next sprite in sequence
     ANIMATION_INTERVAL_MS: int = 70 * 60 // GameConfig.FPS
     INITIAL_HP: int = 3
@@ -109,7 +109,7 @@ class PlayerBulletConfig:
     SCALE: float = 0.7
     SPEED: int = 35
     GRAVITY: int = 2
-    DAMAGE: int = 10
+    DAMAGE: float = 0.5
 
     # initial vertical movement
     INIT_DY: int = -10
@@ -119,20 +119,20 @@ class PlayerBulletConfig:
 
 
 class ShadowConfig:
-    SPRITE_PATH: Path = ASSET_DIR / "npcs" / "shadow"
-    SCALE: float = 0.2
+    SPRITE_PATH: Path = ASSET_DIR / "npcs" / "eyes"
+    SCALE: float = 0.4
     ANIMATION_INTERVAL_MS: int = 200
     SPEED: int = 1
     DAMAGE: int = 1
 
 
 class ShadowBossConfig:
-    SPRITE_PATH: Path = ASSET_DIR / "npcs" / "shadow"
+    SPRITE_PATH: Path = ASSET_DIR / "npcs" / "eyes"
     SCALE: float = 0.6
     ANIMATION_INTERVAL_MS: int = 200
-    SPEED: int = 1
+    SPEED: int = 2
     DAMAGE: int = 1
-    INITIAL_HP: int = 100
+    INITIAL_HP: float = 10000
 
     ANGRY_INTERVAL_MS: int = 7000
     ANGRY_DURATION_MS: int = 2000
@@ -141,11 +141,47 @@ class ShadowBossConfig:
 
 
 class ShadowBulletConfig:
-    SPRITE_PATH: Path = ASSET_DIR / "items" / "shadow_bullet.png"
+    SPRITE_PATH: Path = ASSET_DIR / "items" / "eyes_bullet.png"
     SCALE: float = 0.05
     SPEED: int = 5
     GRAVITY: int = 0.3
-    DAMAGE: int = 1
+    DAMAGE: int = 999999999
+
+    # initial vertical movement
+    INIT_DY: int = -15
+
+    # the time between creation and deletion of entities of this type
+    TTL_MS: int = 3000
+
+
+# class EyesConfig:
+#     SPRITE_PATH: Path = ASSET_DIR / "npcs" / "eyes"
+#     SCALE: float = 0.2
+#     ANIMATION_INTERVAL_MS: int = 200
+#     SPEED: int = 1
+#     DAMAGE: int = 1
+#
+#
+# class EyesBossConfig:
+#     SPRITE_PATH: Path = ASSET_DIR / "npcs" / "eyes"
+#     SCALE: float = 0.6
+#     ANIMATION_INTERVAL_MS: int = 200
+#     SPEED: int = 3
+#     DAMAGE: int = 1
+#     INITIAL_HP: int = 10000
+#
+#     ANGRY_INTERVAL_MS: int = 7000
+#     ANGRY_DURATION_MS: int = 2000
+#
+#     HURT_DURATION_MS: int = 500
+
+
+class EyesBulletConfig:
+    SPRITE_PATH: Path = ASSET_DIR / "items" / "eyes_bullet.png"
+    SCALE: float = 0.05
+    SPEED: int = 5
+    GRAVITY: int = 0.3
+    DAMAGE: int = 999999999
 
     # initial vertical movement
     INIT_DY: int = -15
@@ -170,7 +206,7 @@ class NpcConfig:
 
     def __post_init__(self):
         with open(
-            DATA_DIR / "dialogues" / f"{self.entity_type.name.lower()}.json", encoding="utf-8"
+                DATA_DIR / "dialogues" / f"{self.entity_type.name.lower()}.json", encoding="utf-8"
         ) as fin:
             data = json.load(fin)
             self.name = data["name"]
