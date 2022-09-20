@@ -12,6 +12,7 @@ from config import GameConfig, PlayerConfig, TrampolineConfig
 from entities.animated_entity import AnimatedEntity
 from entities.friendly_npc import FriendlyNpc
 from entities.trampoline import Trampoline
+from entities.spike import Spike
 
 if TYPE_CHECKING:
     from worlds.world import World
@@ -186,6 +187,10 @@ class Player(AnimatedEntity):
         for shadow in self.world.get_entities(EntityType.SHADOW):
             if self.collide(shadow):
                 self._take_damage(shadow.damage)
+
+        for spike in self.world.get_entities(EntityType.SPIKE):
+            if self.collide(spike):
+                self._take_damage(spike.damage)
 
     def _take_damage(self, damage: int):
         now_ms = now()

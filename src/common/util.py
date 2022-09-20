@@ -55,7 +55,7 @@ def display_text(
     text: str,
     x: int,
     y: int,
-    font_size: int = 14,
+    font_size: int = 10,
     color: tuple = Color.DEFAULT,
     alpha: int = 255,
 ):

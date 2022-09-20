@@ -31,7 +31,7 @@ class Menu(BaseScene):
 
         frame = self.menu.add.frame_v(1000, 580)
         if not self.can_resume:
-            frame.pack(self.menu.add.button("Play", partial(start_game, level_id=1)))
+            frame.pack(self.menu.add.button("Play", partial(start_game, level_id=3)))
         else:
             frame.pack(self.menu.add.button("Resume", GameEvent(EventType.RESUME_GAME).post))
             frame.pack(
@@ -39,15 +39,15 @@ class Menu(BaseScene):
             )
 
         available_level_ids = util.get_available_level_ids()
-        if GameConfig.DEBUG:
-            for level_id in available_level_ids:
-                if 1 < level_id < 10:
-                    frame.pack(
-                        self.menu.add.button(
-                            f"[dev-mode] Play Level {level_id}",
-                            partial(start_game, level_id),
-                        )
-                    )
+        # if GameConfig.DEBUG:
+        #     for level_id in available_level_ids:
+        #         if 1 < level_id < 10:
+        #             frame.pack(
+        #                 self.menu.add.button(
+        #                     f"Play Level {level_id}",
+        #                     partial(start_game, level_id),
+        #                 )
+        #             )
             # COT MOC 3: roll credits
             # frame.pack(
             #     self.menu.add.button(
@@ -56,15 +56,15 @@ class Menu(BaseScene):
             #     )
             # )
 
-        extra_level_ids = [level_id for level_id in available_level_ids if level_id >= 10]
-        frame.pack(
-            self.menu.add.dropselect(
-                title="Play Extra Levels",
-                items=[(str(level_id), level_id) for level_id in extra_level_ids],
-                selection_option_font_size=20,
-                onreturn=lambda a, _b: GameEvent(EventType.START_GAME, level_id=a[0][1]).post(),
-            )
-        )
+        # extra_level_ids = [level_id for level_id in available_level_ids if level_id >= 10]
+        # frame.pack(
+        #     self.menu.add.dropselect(
+        #         title="Play Extra Levels",
+        #         items=[(str(level_id), level_id) for level_id in extra_level_ids],
+        #         selection_option_font_size=20,
+        #         onreturn=lambda a, _b: GameEvent(EventType.START_GAME, level_id=a[0][1]).post(),
+        #     )
+        # )
 
         frame.pack(self.menu.add.button("Mute / Unmute", GameEvent(EventType.TOGGLE_SOUND).post))
         frame.pack(self.menu.add.button("Quit", lambda: GameEvent(pygame.QUIT).post()))

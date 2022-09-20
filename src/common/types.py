@@ -17,6 +17,7 @@ class EntityType(enum.Enum):
     EMPTY = 0
     GROUND_A = 1
     GROUND_B = 2
+    SPIKE = 3
 
     PLAYER = 20
     SHADOW = 21
@@ -24,6 +25,8 @@ class EntityType(enum.Enum):
     NPC_CHU_NAM = 23
     NPC_CHU_NHAN = 24
     SHADOW_ALPHA = 25
+    EYES_BOSS = 50
+    EYES = 70
 
     TRAMPOLINE = 30
     TRAMPOLINE_PART_SPRING = 31
@@ -47,9 +50,10 @@ class EntityType(enum.Enum):
     PLAYER_HP = 105
     PLAYER_INVENTORY = 106
     HP_HEART = 107
+    EYES_BULLET = 108
 
     # COT MOC 2: burger rain
-    # ENDING_BURGER = 108
+    ENDING_BURGER = 108
 
 
 OBSTACLES_TYPES = (EntityType.GROUND_A, EntityType.GROUND_B)

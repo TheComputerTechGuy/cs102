@@ -15,6 +15,10 @@ from config import (
     ShadowBulletConfig,
     ShadowConfig,
     TrampolineConfig,
+    SpikeConfig,
+    EyesBossConfig,
+    EyesBulletConfig,
+    EyesConfig,
 )
 from entities.base_entity import BaseEntity
 from entities.bullet import Bullet
@@ -28,6 +32,9 @@ from entities.shadow_alpha import ShadowAlpha
 from entities.shadow_boss import ShadowBoss
 from entities.trampoline import Trampoline
 from entities.trampoline_part import TrampolinePart
+from entities.spike import Spike
+from entities.eyes_boss import EyesBoss
+from entities.eyes import Eyes
 
 
 class EntityFactory:
@@ -83,6 +90,15 @@ class EntityFactory:
                 speed=PlayerBulletConfig.SPEED,
                 damage=PlayerBulletConfig.DAMAGE,
             )
+        elif entity_type == EntityType.SPIKE:
+            return Spike(
+                entity_type=entity_type,
+                x=x,
+                y=y,
+                sprite_path=SpikeConfig.SPRITE_PATH,
+                scale=SpikeConfig.SCALE,
+                damage=SpikeConfig.DAMAGE,
+            )
         elif entity_type == EntityType.SHADOW_BULLET:
             return Bullet(
                 entity_type=entity_type,
@@ -95,6 +111,19 @@ class EntityFactory:
                 gravity=ShadowBulletConfig.GRAVITY,
                 speed=ShadowBulletConfig.SPEED,
                 damage=ShadowBulletConfig.DAMAGE,
+            )
+        elif entity_type == EntityType.EYES_BULLET:
+            return Bullet(
+                entity_type=entity_type,
+                ttl_ms=EyesBulletConfig.TTL_MS,
+                x=x,
+                y=y,
+                init_dy=EyesBulletConfig.INIT_DY,
+                sprite_path=EyesBulletConfig.SPRITE_PATH,
+                scale=EyesBulletConfig.SCALE,
+                gravity=EyesBulletConfig.GRAVITY,
+                speed=EyesBulletConfig.SPEED,
+                damage=EyesBulletConfig.DAMAGE,
             )
         elif entity_type == EntityType.SHADOW_ALPHA:
             return ShadowAlpha(
@@ -117,6 +146,17 @@ class EntityFactory:
                 speed=ShadowConfig.SPEED,
                 damage=ShadowConfig.DAMAGE,
             )
+        elif entity_type == EntityType.EYES:
+            return Eyes(
+                entity_type=entity_type,
+                x=x,
+                y=y,
+                sprite_path=EyesConfig.SPRITE_PATH,
+                scale=EyesConfig.SCALE,
+                animation_interval_ms=EyesConfig.ANIMATION_INTERVAL_MS,
+                speed=EyesConfig.SPEED,
+                damage=EyesConfig.DAMAGE,
+            )
         elif entity_type == EntityType.SHADOW_BOSS:
             return ShadowBoss(
                 entity_type=entity_type,
@@ -127,6 +167,17 @@ class EntityFactory:
                 animation_interval_ms=ShadowBossConfig.ANIMATION_INTERVAL_MS,
                 speed=ShadowBossConfig.SPEED,
                 damage=ShadowBossConfig.DAMAGE,
+            )
+        elif entity_type == EntityType.EYES_BOSS:
+            return EyesBoss(
+                entity_type=entity_type,
+                x=x,
+                y=y,
+                sprite_path=EyesBossConfig.SPRITE_PATH,
+                scale=EyesBossConfig.SCALE,
+                animation_interval_ms=EyesBossConfig.ANIMATION_INTERVAL_MS,
+                speed=EyesBossConfig.SPEED,
+                damage=EyesBossConfig.DAMAGE,
             )
 
         elif entity_type in FRIENDLY_NPC_TYPES:
@@ -166,17 +217,17 @@ class EntityFactory:
                 scale=(GameConfig.TILE_SIZE, GameConfig.TILE_SIZE),
             )
         # COT MOC 2: burger rain
-        # elif entity_type == EntityType.ENDING_BURGER:
-        #     return Bullet(
-        #         entity_type=entity_type,
-        #         ttl_ms=EndingBurgerConfig.TTL_MS,
-        #         x=x,
-        #         y=y,
-        #         sprite_path=EndingBurgerConfig.SPRITE_PATH,
-        #         scale=EndingBurgerConfig.SCALE,
-        #         gravity=EndingBurgerConfig.GRAVITY,
-        #         damage=0,
-        #     )
+        elif entity_type == EntityType.ENDING_BURGER:
+            return Bullet(
+                entity_type=entity_type,
+                ttl_ms=EndingBurgerConfig.TTL_MS,
+                x=x,
+                y=y,
+                sprite_path=EndingBurgerConfig.SPRITE_PATH,
+                scale=EndingBurgerConfig.SCALE,
+                gravity=EndingBurgerConfig.GRAVITY,
+                damage=0,
+            )
         else:
             return BaseEntity(
                 entity_type=entity_type,

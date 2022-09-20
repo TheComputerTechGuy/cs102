@@ -8,6 +8,7 @@ from common.types import EntityType
 from common.util import now
 from config import GameConfig
 from entities.shadow import Shadow
+from entities.eyes import Eyes
 
 if TYPE_CHECKING:
     from worlds.world import World
@@ -21,20 +22,23 @@ def event_handler(world: World) -> None:
     """
     global boss_died_at_ms
     for event in world.events:
-        if event.get_sender_type() == EntityType.SHADOW_BOSS and event.is_type(EventType.DIE):
+        if event.get_sender_type() == EntityType.EYES_BOSS and event.is_type(EventType.DIE):
             boss_died_at_ms = now()
             world.set_bg_delta_alpha(-0.8)  # fading the background
             shadow: Shadow
             for shadow in world.get_entities(EntityType.SHADOW):
                 shadow.die()
+            eyes: Eyes
+            for eyes in world.get_entities(EntityType.EYES):
+                eyes.die()
 
     if boss_died_at_ms is not None:
         """"""
         # COT MOC 2: burger rain
-        # for _ in range(2):
-        #     world.add_entity(EntityType.ENDING_BURGER, x=random.randint(0, GameConfig.WIDTH), y=0)
+        for _ in range(2):
+            world.add_entity(EntityType.ENDING_BURGER, x=random.randint(0, GameConfig.WIDTH), y=0)
 
         # COT MOC 3: roll credits
-        # if now() > boss_died_at_ms + 4300:
-        #     boss_died_at_ms = None
-        #     GameEvent(EventType.VICTORY).post()  # it's time to roll the credits
+        if now() > boss_died_at_ms + 4300:
+            boss_died_at_ms = None
+            GameEvent(EventType.VICTORY).post()  # it's time to roll the credits

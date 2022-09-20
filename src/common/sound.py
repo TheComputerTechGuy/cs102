@@ -82,9 +82,9 @@ def handle_music_events(events: Sequence[GameEvent], sound_on: bool):
             )
 
         # COT MOC 1: play victory music
-        # elif e.is_type(EventType.DIE) and e.get_sender_type() == EntityType.SHADOW_BOSS:
-        #     load_music(
-        #         GameConfig.VICTORY_MUSIC,
-        #         GameConfig.MENU_MUSIC_VOLUME,
-        #         play=sound_on,
-        #     )
+        elif e.is_type(EventType.DIE) and e.get_sender_type() == EntityType.SHADOW_BOSS:
+            load_music(
+                GameConfig.VICTORY_MUSIC,
+                GameConfig.MENU_MUSIC_VOLUME,
+                play=sound_on,
+            )

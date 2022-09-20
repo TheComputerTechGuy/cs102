@@ -13,7 +13,7 @@ pygame.init()
 ASSET_DIR = Path("assets")
 DATA_DIR = Path("data")
 
-FONT_PATH = ASSET_DIR / "fonts" / "arial.ttf"
+FONT_PATH = ASSET_DIR / "fonts" / "terminator.ttf"
 
 
 class Color:
@@ -27,15 +27,15 @@ class Color:
     TEXT_INVENTORY_CNT = (255, 255, 0)
 
     # COT MOC 3: roll credits
-    # TEXT_INTERNSHIP_REPORT = (242, 222, 179)
-    # TEXT_CREDIT = (230, 147, 154)
+    TEXT_INTERNSHIP_REPORT = (242, 222, 179)
+    TEXT_CREDIT = (230, 147, 154)
 
 
 class GameConfig:
     DEBUG: bool = True
     NAME: str = "STEAM Valley"
     FPS: int = 60
-    WIDTH: int = 1248
+    WIDTH: int = 1280
     HEIGHT: int = 768
     TILE_SIZE: int = 48
     PLAYER_SOFT_EDGE_WIDTH: int = 300
@@ -78,11 +78,11 @@ class PlayerConfig:
     SCALE: float = 0.16
     GRAVITY: int = 2
     SPEED: int = 7
-    JUMP_VERTICAL_SPEED: int = 26
-    JUMP_WITH_TRAMPOLINE_SPEED: int = 40
+    JUMP_VERTICAL_SPEED: int = 30
+    JUMP_WITH_TRAMPOLINE_SPEED: int = 50
     # minimal time until switching to the next sprite in sequence
     ANIMATION_INTERVAL_MS: int = 70 * 60 // GameConfig.FPS
-    INITIAL_HP: int = 3
+    INITIAL_HP: int = 10
     INVULNERABLE_DURATION_MS: int = 1000
 
     HURT_DURATION_MS: int = 80 * 4
@@ -100,7 +100,7 @@ class PlayerHpConfig:
 
 
 class PlayerInventoryConfig:
-    X: int = 290
+    X: int = 800
     Y: int = 30
     X_STEP: int = 60  # distance between 2 consecutive items
 
@@ -113,7 +113,7 @@ class PlayerInventoryConfig:
 
 class PlayerBulletConfig:
     SPRITE_PATH: Path = ASSET_DIR / "items" / "player_bullet.png"
-    SCALE: float = 0.7
+    SCALE: float = 0.3
     SPEED: int = 35
     GRAVITY: int = 2
     DAMAGE: int = 10
@@ -124,6 +124,10 @@ class PlayerBulletConfig:
     # the time between creation and deletion of entities of this type
     TTL_MS: int = 400 * 60 // GameConfig.FPS
 
+class SpikeConfig:
+    SPRITE_PATH: Path = ASSET_DIR / "items" / "spike.png"
+    SCALE: float = 0.7
+    DAMAGE: int = 1
 
 class ShadowConfig:
     SPRITE_PATH: Path = ASSET_DIR / "npcs" / "shadow"
@@ -153,6 +157,40 @@ class ShadowBulletConfig:
     SPEED: int = 5
     GRAVITY: int = 0.3
     DAMAGE: int = 1
+
+    # initial vertical movement
+    INIT_DY: int = -15
+
+    # the time between creation and deletion of entities of this type
+    TTL_MS: int = 3000
+
+class EyesConfig:
+    SPRITE_PATH: Path = ASSET_DIR / "npcs" / "eyes"
+    SCALE: float = 0.2
+    ANIMATION_INTERVAL_MS: int = 200
+    SPEED: int = 1
+    DAMAGE: int = 1
+
+class EyesBossConfig:
+    SPRITE_PATH: Path = ASSET_DIR / "npcs" / "eyes"
+    SCALE: float = 0.6
+    ANIMATION_INTERVAL_MS: int = 200
+    SPEED: int = 3
+    DAMAGE: int = 1
+    INITIAL_HP: int = 50000
+
+    ANGRY_INTERVAL_MS: int = 7000
+    ANGRY_DURATION_MS: int = 2000
+
+    HURT_DURATION_MS: int = 500
+
+
+class EyesBulletConfig:
+    SPRITE_PATH: Path = ASSET_DIR / "items" / "eyes_bullet.png"
+    SCALE: float = 0.05
+    SPEED: int = 5
+    GRAVITY: int = 0.3
+    DAMAGE: int = 3
 
     # initial vertical movement
     INIT_DY: int = -15
